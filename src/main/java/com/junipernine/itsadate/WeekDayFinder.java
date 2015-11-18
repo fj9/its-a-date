@@ -1,7 +1,8 @@
 package com.junipernine.itsadate;
 
+import com.google.common.collect.ImmutableMap;
+
 import java.time.DayOfWeek;
-import com.google.common.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,24 +10,23 @@ import java.util.Map;
  * Created on 17/11/2015.
  */
 public class WeekDayFinder {
-//    private static Map<String, DayOfWeek> nickNames = ImmutableMap
-//       "MON", DayOfWeek.MONDAY;
-//      "TUE", DayOfWeek.TUESDAY;
-//      "TUES", DayOfWeek.TUESDAY);
-//      "WED", DayOfWeek.WEDNESDAY);
-//      "THU", DayOfWeek.THURSDAY);
-//      "THURS", DayOfWeek.THURSDAY);
-//      "FRI", DayOfWeek.FRIDAY);
-//      "SAT", DayOfWeek.SATURDAY);
-//      "SUN", DayOfWeek.SUNDAY);
-//    };
+    private static Map<String, DayOfWeek> nickNames = ImmutableMap.<String, DayOfWeek>builder()
+            .put("MON", DayOfWeek.MONDAY)
+            .put("TUE", DayOfWeek.TUESDAY)
+            .put("TUES", DayOfWeek.TUESDAY)
+            .put("THU", DayOfWeek.THURSDAY)
+            .put("THURS", DayOfWeek.THURSDAY)
+            .put("FRI", DayOfWeek.FRIDAY)
+            .put("SAT", DayOfWeek.SATURDAY)
+            .put("SUN", DayOfWeek.SUNDAY)
+            .build();
+
 
     public static boolean isWeekDay(String possibleDay) {
         return true;
     }
 
     public static DayOfWeek convertToDayOfWeek(String s) {
-        ImmutableMap
         String possibleDay = s.toUpperCase().trim();
         DayOfWeek day = null;
         try {
@@ -34,7 +34,7 @@ public class WeekDayFinder {
         } catch (IllegalArgumentException ex) {
             if (nickNames.containsKey(possibleDay))
                 day = nickNames.get(possibleDay);
-            else throw new IllegalArgumentException(s+" is not a recognised day", ex);
+            else throw new IllegalArgumentException(s + " is not a recognised day", ex);
         }
         return day;
     }
